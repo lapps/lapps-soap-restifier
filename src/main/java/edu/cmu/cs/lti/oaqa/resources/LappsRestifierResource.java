@@ -22,8 +22,9 @@ public class LappsRestifierResource {
     public Response getMetadataFromLappsSoap(@QueryParam("endpoint") String endpoint) {
         String outputStr;
         try {
+            //TODO change username/password later
             ServiceClient client = new ServiceClient(endpoint, "tester", "tester");
-            outputStr = "\n Metadata: \n" + client.getMetadata() + "\n";
+            outputStr = client.getMetadata();
         } catch (ServiceException e) {
             return Response.serverError().build();
         }
@@ -38,8 +39,9 @@ public class LappsRestifierResource {
         String outputStr;
         try {
             String inputStr = convertStreamToString(input);
+            //TODO change username/password later
             ServiceClient client = new ServiceClient(endpoint, "tester", "tester");
-            outputStr = "\n Metadata: \n" + client.execute(inputStr) + "\n";
+            outputStr = client.execute(inputStr) ;
         } catch (ServiceException e) {
             return Response.serverError().build();
         }
